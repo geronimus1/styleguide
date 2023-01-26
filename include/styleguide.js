@@ -155,6 +155,11 @@ function AddTOCElements(toc_div, heading) {
     var link = document.createElement('a');
     link.href = '#' + heading.id;       // Create the anchor link
     link.textContent = heading.textContent; // Link text is same as heading
+
+    if(heading.classList.contains("approved") || heading.classList.contains("added") ){
+      toc_list_element.classList.add("approved");
+    }
+
     toc_list_element.appendChild(link);
   }
 }
