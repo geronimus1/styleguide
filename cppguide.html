@@ -9,7 +9,7 @@
 </head>
 <body onload="initStyleGuide();">
 <div id="content">
-<h1>Google C++ Style Guide</h1>
+<h1 class="approved">Google C++ Style Guide</h1>
 <div class="horizontal_toc" id="tocDiv"></div>
 
 <h2 id="Background" class="ignoreLink">Background</h2>
@@ -192,7 +192,8 @@ the readability, size and performance of your code.</p>
 pitfalls of using header files.</p>
 
 <a id="The_-inl.h_Files"></a>
-<h3 id="Self_contained_Headers">Self-contained Headers</h3>
+<div class="approved">
+<h3 class="approved" id="Self_contained_Headers">Self-contained Headers</h3>
 
 <p>Header files should be self-contained (compile on their own) and
 end in <code>.h</code>.  Non-header files that are meant for inclusion
@@ -222,7 +223,7 @@ their prerequisites.  Name such files with the <code>.inc</code>
 extension.  Use sparingly, and prefer self-contained headers when
 possible.</p>
 
-<h3 id="The__define_Guard">The #define Guard</h3>
+<h3 class="approved" id="The__define_Guard">The #define Guard</h3>
 
 <p>All header files should have <code>#define</code> guards to
 prevent multiple inclusion. The format of the symbol name
@@ -250,7 +251,7 @@ guard:</p>
 
 
 
-<h3 id="Include_What_You_Use">Include What You Use</h3>
+<h3 class="approved" id="Include_What_You_Use">Include What You Use</h3>
 
 <p>If a source or header file refers to a symbol defined elsewhere,
 the file should directly include a header file which properly intends
@@ -264,7 +265,7 @@ breaking clients. This also applies to related headers
 - <code>foo.cc</code> should include <code>bar.h</code> if it uses a
 symbol from it even if <code>foo.h</code>
 includes <code>bar.h</code>.</p>
-
+</div>
 <h3 id="Forward_Declarations">Forward Declarations</h3>
 
 <p>Avoid using forward declarations where possible.
@@ -508,10 +509,10 @@ system-specific code small and localized. Example:</p>
 #endif  // LANG_CXX11
 </pre>
 
-<h2 id="Scoping">Scoping</h2>
+<h2 class="approved" id="Scoping">Scoping</h2>
 
-<h3 id="Namespaces">Namespaces</h3>
-
+<h3 class="approved" id="Namespaces">Namespaces</h3>
+<div class="approved">
 <p>With few exceptions, place code in a namespace. Namespaces
 should have unique names based on the project name, and possibly
 its path. Do not use <i>using-directives</i> (e.g.,
@@ -677,7 +678,7 @@ inline void my_inline_function() {
 
   </li><li>Do not use inline namespaces.</li>
 </ul>
-
+</div>
 <a id="Unnamed_Namespaces_and_Static_Variables"></a>
 <h3 id="Internal_Linkage">Internal Linkage</h3>
 
@@ -4000,8 +4001,9 @@ when singular</a>), and "it"/"its" for software, computers, and other
 things that aren't people.</p>
 
 
+<div class="approved">
 
-<h2 id="Naming">Naming</h2>
+<h2 class="approved" id="Naming">Naming</h2>
 
 <p>The most important consistency rules are those that govern
 naming. The style of a name immediately informs us what sort of
@@ -4017,7 +4019,7 @@ consistency is more important than individual preferences in this
 area, so regardless of whether you find them sensible or not,
 the rules are the rules.</p>
 
-<h3 id="General_Naming_Rules">General Naming Rules</h3>
+<h3 class="approved" id="General_Naming_Rules">General Naming Rules</h3>
 
 <p>Optimize for readability using names that would be clear
 even to people on a different team.</p>
@@ -4091,7 +4093,7 @@ category: type template parameters should follow the rules for
 parameters should follow the rules for <a href="#Variable_Names">
 variable names</a>.
 
-</p><h3 id="File_Names">File Names</h3>
+</p><h3 class="approved" id="File_Names">File Names</h3>
 
 <p>Filenames should be all lowercase and can include
 underscores (<code>_</code>) or dashes (<code>-</code>).
@@ -4124,7 +4126,7 @@ of files called, e.g., <code>foo_bar.h</code> and
 <code>foo_bar.cc</code>, defining a class called
 <code>FooBar</code>.</p>
 
-<h3 id="Type_Names">Type Names</h3>
+<h3 class="approved" id="Type_Names">Type Names</h3>
 
 <p>Type names start with a capital letter and have a capital
 letter for each new word, with no underscores:
@@ -4150,30 +4152,68 @@ using PropertiesMap = hash_map&lt;UrlTableProperties *, std::string&gt;;
 enum class UrlTableError { ...
 </pre>
 
-<h3 id="Variable_Names">Variable Names</h3>
+<h4 class="added" id="Pointer_type_Names">Pointer type Names</h3>
 
+<div class="added">
+
+<p>Do not use any additional type names and aliases that hides that type pointer is used, use original types that show pointer using:
+<code>int*</code>, <code>char*</code>, <code>std::unique_ptr&lt;int&gt;</code>, <code>unique_ptr&lt;int&gt;</code>.</p>
+
+<pre>// variables
+int* number;
+MyClass* myClass;
+std::unique_ptr&lt;MyClass&gt myClass; // you don't need use special chars or words in variable name to mark as pointer
+unique_ptr&lt;MyClass&gt myClass;
+
+
+//function parameters
+int function1(MyClass* myClass);
+int function2(std::unique_ptr&lt;MyClass&gt myClass)
+int function3(unique_ptr&lt;MyClass&gt myClass)
+
+</pre>
+</div>
+  
+<h3 class="approved" id="Variable_Names">Variable Names</h3>
+</div>
+<div class="rejected">
 <p>The names of variables (including function parameters) and data members are
 all lowercase, with underscores between words. Data members of classes (but not
 structs) additionally have trailing underscores. For instance:
 <code>a_local_variable</code>, <code>a_struct_data_member</code>,
 <code>a_class_data_member_</code>.</p>
+</div>
+<div class="added">
+  <p>The names of variables (including function parameters) and data members are
+    lowerCamelCase. Data members of classes (but not
+  structs) additionally have trailing underscores. For instance:
+  <code>aLocalVariable</code>, <code>aStructDataMember</code>,
+  <code>aClassDataMember_</code>.</p>
+  </div>
+<h4 class="approved" >Common Variable names</h4>
 
-<h4>Common Variable names</h4>
-
-<p>For example:</p>
-
+<p class="approved">For example:</p>
+<div class="rejected">
 <pre>std::string table_name;  // OK - lowercase with underscore.
 </pre>
 
 <pre class="badcode">std::string tableName;   // Bad - mixed case.
 </pre>
+</div>
+<div class="added">
+  <pre>std::string tableName;  // OK - lowerCamelCase
+  </pre>
+  
+  <pre class="badcode">std::string table_name;   // Bad - underscores.
+  </pre>
+  </div>
+<h4 class="approved" >Class Data Members</h4>
 
-<h4>Class Data Members</h4>
-
-<p>Data members of classes, both static and non-static, are
+<p class="approved">Data members of classes, both static and non-static, are
 named like ordinary nonmember variables, but with a
 trailing underscore.</p>
 
+<div class="rejected">
 <pre>class TableInfo {
   ...
  private:
@@ -4181,27 +4221,48 @@ trailing underscore.</p>
   static Pool&lt;TableInfo&gt;* pool_;  // OK.
 };
 </pre>
+</div>
 
-<h4>Struct Data Members</h4>
+<div class="added">
+  <pre>class TableInfo {
+    ...
+   private:
+    std::string tableName_;  // OK - underscore at end.
+    static Pool&lt;TableInfo&gt;* pool_;  // OK.
+  };
+  </pre>
+  </div>
 
-<p>Data members of structs, both static and non-static,
+<h4 class="approved">Struct Data Members</h4>
+
+<p class="approved">Data members of structs, both static and non-static,
 are named like ordinary nonmember variables. They do not have
 the trailing underscores that data members in classes have.</p>
 
+<div class="rejected">
 <pre>struct UrlTableProperties {
   std::string name;
   int num_entries;
   static Pool&lt;UrlTableProperties&gt;* pool;
 };
 </pre>
+</div>
 
+<div class="added">
+  <pre>struct UrlTableProperties {
+    std::string name;
+    int numEntries;
+    static Pool&lt;UrlTableProperties&gt;* pool;
+  };
+</pre>
+</div>
 
-<p>See <a href="#Structs_vs._Classes">Structs vs.
+<p class="approved">See <a href="#Structs_vs._Classes">Structs vs.
 Classes</a> for a discussion of when to use a struct
 versus a class.</p>
 
-<h3 id="Constant_Names">Constant Names</h3>
-
+<h3 class="approved" id="Constant_Names">Constant Names</h3>
+<div class="approved">
 <p>Variables declared constexpr or const, and whose value is fixed for
 the duration of the program, are named with a leading "k" followed
 by mixed case. Underscores can be used as separators in the rare cases
@@ -4217,7 +4278,7 @@ Storage Duration</a> for details) should be named this way.  This
 convention is optional for variables of other storage classes, e.g., automatic
 variables, otherwise the usual variable naming rules apply.</p>
 
-<h3 id="Function_Names">Function Names</h3>
+<h3 class="approved" id="Function_Names">Function Names</h3>
 
 <p>Regular functions have mixed case; accessors and mutators may be named
 like variables.</p>
@@ -4240,7 +4301,7 @@ variables. These often correspond to actual member variables, but this is
 not required. For example, <code>int count()</code> and <code>void
 set_count(int count)</code>.</p>
 
-<h3 id="Namespace_Names">Namespace Names</h3>
+<h3 class="approved" id="Namespace_Names">Namespace Names</h3>
 
 Namespace names are all lower-case, with words separated by underscores.
 Top-level namespace names are based on the project name
@@ -4278,7 +4339,7 @@ internal name is helpful
 (<code>websearch::index::frobber_internal</code> for use
 in <code>frobber.h</code>).</p>
 
-<h3 id="Enumerator_Names">Enumerator Names</h3>
+<h3 class="approved" id="Enumerator_Names">Enumerator Names</h3>
 
 <p>Enumerators (for both scoped and unscoped enums) should be named like
 <a href="#Constant_Names">constants</a>, not like
@@ -4309,7 +4370,7 @@ naming.</p>
 
 
 
-<h3 id="Macro_Names">Macro Names</h3>
+<h3 class="approved" id="Macro_Names">Macro Names</h3>
 
 <p>You're not really going to <a href="#Preprocessor_Macros">
 define a macro</a>, are you? If you do, they're like this:
@@ -4325,7 +4386,7 @@ named with all capitals and underscores.</p>
 #define PI_ROUNDED 3.0
 </pre>
 
-<h3 id="Exceptions_to_Naming_Rules">Exceptions to Naming Rules</h3>
+<h3 class="approved" id="Exceptions_to_Naming_Rules">Exceptions to Naming Rules</h3>
 
 <p>If you are naming something that is analogous to an
 existing C or C++ entity then you can follow the existing
@@ -4348,7 +4409,7 @@ naming convention scheme.</p>
   <dt><code>LONGLONG_MAX</code></dt>
   <dd>a constant, as in <code>INT_MAX</code></dd>
 </dl>
-
+</div>
 <h2 id="Comments">Comments</h2>
 
 <p>Comments are absolutely vital to keeping our code readable. The following rules describe what you

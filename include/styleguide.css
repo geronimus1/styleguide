@@ -15,7 +15,7 @@ h1 {
 }
 
 h1, h2, h3, h4, h5, h6 {
-  color: #06c;
+  color: rgb(132, 184, 236);
   margin-top: 2em;
   margin-bottom: 1em;
   padding: 25px;
@@ -266,8 +266,17 @@ address {
 
 .rejected {
   color: red;
+  text-decoration: line-through;
 }
 
 .added {
+  color: green;
+}
+
+h1.approved, h2.approved, h3.approved, h4.approved, h5.approved, h6.approved {
+  color: #06c;
+}
+
+h1.added, h2.added, h3.added, h4.added, h5.added, h6.added {
   color: forestgreen;
 }
