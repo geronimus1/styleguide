@@ -259,3 +259,15 @@ address {
   display: block;
   margin-bottom: 1em;
 }
+
+.approved {
+  color: black;
+}
+
+.rejected {
+  color: red;
+}
+
+.added {
+  color: forestgreen;
+}
