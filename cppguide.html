@@ -4127,7 +4127,7 @@ variable names</a>.
 </p><h3 class="approved" id="File_Names">File Names</h3>
 
 <p>Filenames should be all lowercase and can include
-underscores (<code>_</code>) or dashes (<code>-</code>).
+underscores (<code>_</code>) <span class="rejected">or dashes (<code>-</code>)</span>.
 Follow the convention that your
 
 project uses. If there is no consistent
@@ -4137,9 +4137,12 @@ local pattern to follow, prefer "_".</p>
 
 <ul>
   <li><code>my_useful_class.cc</code></li>
-  <li><code>my-useful-class.cc</code></li>
+  <li class="added"><code>my_useful_class.cpp</code></li>
+  <li class="rejected"><code>my-useful-class.cc</code></li>
   <li><code>myusefulclass.cc</code></li>
+  <li class="added"><code>myusefulclass.cpp</code></li>
   <li><code>myusefulclass_test.cc // _unittest and _regtest are deprecated.</code></li>
+  <li class="added"><code>myusefulclass_test.cpp</code></li>
 </ul>
 
 <p>C++ files should end in <code>.cc</code> and header files should end in
