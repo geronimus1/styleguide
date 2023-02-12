@@ -284,3 +284,7 @@ h1.added, h2.added, h3.added, h4.added, h5.added, h6.added {
 li.approved a {
   background-color:lightgreen;
 }
+
+div.approved a {
+  background-color:lightgreen;
+}

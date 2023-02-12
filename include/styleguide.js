@@ -123,11 +123,15 @@ function AddTOCMaster(tocTable, heading) {
   var toc_category = document.createElement('div');
   toc_tr_td.appendChild(toc_category);
   toc_category.className = 'toc_category';
+  if(heading.classList.contains("approved") || heading.classList.contains("added") ){
+    toc_category.classList.add("approved");
+  }
 
   // Create the link to this header
   var link = document.createElement('a');
   link.href = '#' + heading.id;       // Create the anchor link
   link.textContent = heading.textContent; // Link text is same as heading
+
   toc_category.appendChild(link);
 
   // Add the container table cell for its children
