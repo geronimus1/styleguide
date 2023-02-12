@@ -1116,7 +1116,12 @@ at class or namespace scope must be annotated with
 <p><code>thread_local</code> should be preferred over other mechanisms for
 defining thread-local data.</p>
 
-<h2 id="Classes">Classes</h2>
+<h2 class="approved" id="Classes">Classes</h2>
+
+<p class="added">About classes we want to use KISS principle (keep it simple stupid), so we want to use classes only in some cases:</p>
+<li class="added">refactoring of whole module of program</li>
+<li class="added">need polymorphism</li>
+<li class="added">we need more than 1 instance in our program (for example we need to work with more than 1 requests, responses, transactions, etc.)</li>
 
 <p>Classes are the fundamental unit of code in C++. Naturally,
 we use them extensively. This section lists the main dos and
