@@ -4189,18 +4189,23 @@ enum class UrlTableError { ...
 
 <p>Do not use any additional type names and aliases that hides that type pointer is used, use original types that show pointer using:
 <code>int*</code>, <code>char*</code>, <code>std::unique_ptr&lt;int&gt;</code>, <code>unique_ptr&lt;int&gt;</code>.</p>
+<p>You should not use special chars or words in variable name to mark as pointer, but you can use prefix "p" if you want.</p>
 
 <pre>// variables
 int* number;
 MyClass* myClass;
-std::unique_ptr&lt;MyClass&gt myClass; // you don't need use special chars or words in variable name to mark as pointer
+std::unique_ptr&lt;MyClass&gt myClass;
 unique_ptr&lt;MyClass&gt myClass;
+
+MyClass* pMyClass; // optional usage of prefix "p"
 
 
 //function parameters
 int function1(MyClass* myClass);
 int function2(std::unique_ptr&lt;MyClass&gt myClass)
 int function3(unique_ptr&lt;MyClass&gt myClass)
+
+int function3(unique_ptr&lt;MyClass&gt pMyClass) // optional usage of prefix "p"
 
 </pre>
 </div>
